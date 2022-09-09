@@ -1,0 +1,51 @@
+values = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+
+def gameDisplay(v): 
+    print(' ')
+    print(' ' + v[0] + ' / ' + v[1] + ' / ' + v[2])
+    print('-----------')
+    print(' ' + v[3] + ' / ' + v[4] + ' / ' + v[5])
+    print('-----------')
+    print(' ' + v[6] + ' / ' + v[7] + ' / ' + v[8])
+    print(' ')
+
+    return
+
+
+def game(v):
+    round = 1 
+    player = 'X'
+    index = 0
+    gameStatus = True
+
+    while gameStatus:
+        try:
+            index = int(input('> Tour du joueur' + player + '. Tapez un nombre entre 1 et 9 : '))
+            if v[index - 1] == ' ': 
+                v[index - 1] = player
+                gameDisplay(v)
+                round += 1
+        except:
+            print('> Tapez un nombre entre 1 et 9 !')
+        
+        if round >= 9 : 
+            gameStatus = False
+            print('> Egalite')
+        elif v[0] == v[1] == v[2] == player \
+        or v[3] == v[4] == v[5] == player \
+        or v[6] == v[7] == v[8] == player \
+        or v[0] == v[3] == v[6] == player \
+        or v[1] == v[4] == v[7] == player \
+        or v[2] == v[5] == v[8] == player \
+        or v[0] == v[4] == v[8] == player \
+        or v[2] == v[4] == v[6] == player:
+            gameStatus = False
+            print('> Les gagnants sont les : ', player)
+
+        if player == 'X': player = '0'
+        elif player == '0': player = 'X'
+
+    return
+
+gameDisplay(values)
+game(values)
